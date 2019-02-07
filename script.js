@@ -1,3 +1,6 @@
+
+// De user input (3 valide opties + 1 bonus optie) wegschrijven naar een variabele. Anders een error.
+
 const getUserChoice = (userInput) => {
     userInput = userInput.toLowerCase();
     switch(userInput) {
@@ -8,6 +11,9 @@ const getUserChoice = (userInput) => {
         return userInput;
         break;
       case 'scissors':
+        return userInput;
+        break;
+      case 'bomb':
         return userInput;
         break;
       default: 
@@ -47,44 +53,58 @@ const getUserChoice = (userInput) => {
     }
   }
   
-  console.log('computer: ' + getComputerChoice(randomNumber));
+  // console.log('computer: ' + getComputerChoice(randomNumber));
   
   
-  // Determine the winner!
+  // Functie om de winnaar te bepalen.
   
   function determineWinner(userChoice, computerChoice) {
-    if(userChoice === 'rock') {
-      if(computerChoice === 'paper') {
-        console.log('It\'s a tie!')
+    if(userChoice === 'bomb') {
+      return 'You won BIG TIME!';
+    }
+    else if(userChoice === 'rock') {
+      if(computerChoice === 'rock') {
+        return 'It\'s a tie!';
       } else if(computerChoice === 'paper') {
-        console.log('Computer won!')
+        return 'Computer won!';
       } else if(computerChoice === 'scissors') {
-        console.log('You won!')
+        return 'You won!';
       }
     }
     else if(userChoice === 'paper') {
       if(computerChoice ==='paper') {
-        console.log('It\'s a tie!')
+        return 'It\'s a tie!';
       } else if(computerChoice === 'scissors') {
-        console.log('Computer won!')
+        return 'Computer won!';
       } else if(computerChoice === 'rock') {
-        console.log('You won!')
+        return 'You won!';
       }
     }
     else {
       if(computerChoice === 'scissors') {
-        console.log('It\'s a tie!')
+        return 'It\'s a tie!';
       } else if(computerChoice === 'rock') {
-        console.log('Computer won!')
+        return 'Computer won!';
       } else if(computerChoice === 'paper') {
-        console.log('You won!')
+        return 'You won!';
       }
     }
   }
   
-  console.log(function playGame(userChoice, computerChoice) {
-    const userChoice = getUserChoice('rock'); 
-    const computerChoice = getComputerChoice(); 
+
+  // Met deze functie 'speel je het spel' - er wordt gelogt wat de gebruiker speelt en wat de computer speelt (van de gebruiker is een vooringestelde waarde). Vervolgens wordt de uitslag daaronder gelogd.
+
+  function playGame() {
+    const userChoice = getUserChoice('scissors');
+      const computerChoice = getComputerChoice();
+    console.log('You threw: ' + userChoice);
+    console.log('The computer threw: ' + computerChoice);
+    console.log(determineWinner(userChoice, computerChoice))
   }
-  )
+  
+
+  // Uitvoeren van het spel.
+
+  playGame();
+  
   
